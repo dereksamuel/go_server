@@ -16,22 +16,40 @@ func main() {
 	fmt.Println(operation)
 	fmt.Println("/O")
 
-	values := strings.Split(operation, "+") // parte al texto
+	operator := "-"
+	values := strings.Split(operation, operator) // parte al texto
 	fmt.Println(values)
 
 	result := 0
 
+	if operator == "*" || operator == "/" {
+		result = 1
+	}
+
 	for i, val := range values {
 		value, errorResult := strconv.Atoi(val)
+		thereIsAnError := false
 
 		if errorResult != nil {
 			fmt.Println("[error]:", errorResult)
 			break
 		}
 
-		result = result + value
+		switch operator {
+		case "+":
+			result = result + value
+		case "*":
+			result = result * value
+		default:
+			fmt.Println("[error]: No esta soportado el operador:", operator)
+			thereIsAnError = true
+		}
 
-		if (i + 1) == len(values) {
+		if thereIsAnError != false {
+			break
+		}
+
+		if i+1 == len(values) {
 			fmt.Println("[result OK]:", result)
 		}
 	}
