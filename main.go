@@ -19,8 +19,20 @@ func main() {
 	values := strings.Split(operation, "+") // parte al texto
 	fmt.Println(values)
 
-	operation1, _ := strconv.Atoi(values[0]) // me permite tomar un string y transformarlo a entero
-	operation2, _ := strconv.Atoi(values[1])
+	result := 0
 
-	fmt.Println(operation1 + operation2)
+	for i, val := range values {
+		value, errorResult := strconv.Atoi(val)
+
+		if errorResult != nil {
+			fmt.Println("[error]:", errorResult)
+			break
+		}
+
+		result = result + value
+
+		if (i + 1) == len(values) {
+			fmt.Println("[result OK]:", result)
+		}
+	}
 }
