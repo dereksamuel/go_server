@@ -1,57 +1,20 @@
-package main //package name
-// package	otroPaquete
+package main
 
-import "fmt" // librerías necesarias para importar el paquete
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 func main() {
-	// Variables
-	var mensaje string = "Hola mundo"
-	easyMessage := "Hola mundo usando :="
-	fmt.Println(mensaje)
-	fmt.Println(easyMessage)
+	scanner := bufio.NewScanner(os.Stdin) // input's terminal getting
+	fmt.Println("I/")
+	scanner.Scan()
+	operation := scanner.Text() // asignar al scaner, y se obtiene como text ya que es un buffer
+	fmt.Println(operation)
+	fmt.Println("/O")
 
-	// Puedes comentar usando "//"
-
-	// float numbers
-	a := 10.
-	var b float64 = 3
-	fmt.Println(a / b)
-
-	//integer numbers
-	var c int = 10
-	d := 3
-	fmt.Println(c / d)
-
-	// boolean
-	var x bool = true
-	y := false
-	fmt.Println(x || y)
-	fmt.Println(x && y)
-	fmt.Println(!x)
-
-	//Lógica privada
-	privada()
-
-	//Lógica Publica
-	Publica()
-
-	//Función "defer"
-	printHelloWorld()
-}
-
-// func types
-func privada() {
-	fmt.Println("Ejecutar lógica que no necesita ser exportada (pertenece solo a este paquete)")
-}
-
-func Publica() {
-	fmt.Println("Lógica que quiero exportar a otros paquetes")
-}
-
-// defer
-func printHelloWorld() {
-	defer fmt.Println("World!")
-	fmt.Println("Hello")
-
-	fmt.Println("defer ejecuta un fragmento de código hasta que la función haya terminado")
+	values := strings.Split(operation, "+") // parte al texto
+	fmt.Println(values)
 }
